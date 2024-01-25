@@ -1,0 +1,6 @@
+resource_group_name          = "your-rg-name"
+location                    = "East US"
+virtual_network_name         = "your-vnet-name"
+virtual_network_address_space = ["10.0.0.0/16"]
+subnet_name                  = "your-subnet-name"
+subnet_address_prefixes      = ["10.0.1.0/24"]
