@@ -36,11 +36,8 @@ For the application to succesfully run, you need to install the following packag
 - pyodbc (version 4.0.39)
 - SQLAlchemy (version 2.0.21)
 - werkzeug (version 2.2.3)
-<<<<<<< HEAD
-=======
 - azure-identity (version 1.15.0)
 - azure-keyvault-secrets (version 4.7.0)
->>>>>>> 04c2ce6 (Latest version of the project)
 
 ### Usage
 
@@ -58,8 +55,6 @@ To run the application, you simply need to run the `app.py` script in this repos
 
 - **Database:** The application employs an Azure SQL Database as its database system to store order-related data.
 
-<<<<<<< HEAD
-=======
 ## Delivery Date
 
 ### **Making Changes in the Main Branch**
@@ -168,7 +163,7 @@ The parameters utilized in the creation of the AKS cluster are outlined below:
 Output variables from the networking module include 'resource_group_name', 'vnet_id', 'control_plane_subnet_id', 'worker_node_subnet_id', and 'aks_nsg_id'.
 
 After configuring the settings, initialize the directory using `terraform init`. The setup will be on the main branch within the `aks-terraform` directory. Once initialized, execute `terraform apply` to deploy the cluster in Azure AKS
->>>>>>> 04c2ce6 (Latest version of the project)
+
 ## Contributors 
 
 - [Maya Iuga]([https://github.com/yourusername](https://github.com/maya-a-iuga))
