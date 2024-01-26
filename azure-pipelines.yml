@@ -31,6 +31,7 @@ jobs:
   - task: KubernetesManifest@1
     inputs:
      action: 'deploy'
+     connectionType: 'azureResourceManager'
      kubernetesServiceEndpoint: 'Kubernetes'
      azureSubscriptionEndpoint: 'Azure'
      azureResourceGroup: 'networking-rg'
