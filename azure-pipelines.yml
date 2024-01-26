@@ -1,6 +1,12 @@
 trigger:
   branches:
-    - main
+    include:
+      - main
+- task: Docker@2
+  inputs:
+    containerRegistry: 'docker'
+    command: 'buildAndPush'
+    Dockerfile: '**/Dockerfile'
 - task: Docker@2
   inputs:
     containerRegistry: 'docker'
