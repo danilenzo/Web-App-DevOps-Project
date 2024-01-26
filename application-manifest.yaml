@@ -23,3 +23,16 @@ spec:
       maxSurge: 1
       maxUnavailable: 1
   progressDeadlineSeconds: 1800
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: flask-app-service
+spec:
+  selector:
+    app: flask-app
+  ports:
+    - protocol: TCP # known Transmission Control Protocol, is a core protocol of the Internet Protocol (IP) suite. 
+      port: 80      # It provides a reliable connection-oriented communication service between two devices on a network.
+      targetPort: 5000
+  type: ClusterIP
