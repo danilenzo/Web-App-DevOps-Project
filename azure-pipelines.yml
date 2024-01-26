@@ -1,6 +1,11 @@
 trigger:
-- main
-
+  branches:
+    - main
+- task: Docker@2
+  inputs:
+    containerRegistry: 'docker'
+    command: 'buildAndPush'
+    Dockerfile: '**/Dockerfile'
 pool:
   vmImage: ubuntu-latest
 
