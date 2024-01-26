@@ -21,7 +21,7 @@ steps:
   inputs:
     action: 'deploy'
     connectionType: 'azureResourceManager'
-    azureSubscriptionConnection: 'Danil Vorobjov DevOps (f53e97b6b6120be2b4e74be03cc64a336ad29a76)'
+    azureSubscriptionConnection: 'Danil Vorobjov DevOps (e64a8fc7-dc70-4104-8933-7664dab62c2a)'
     azureResourceGroup: 'networking-rg'
     kubernetesCluster: 'terraform-aks-cluster'
     manifests: 'application-manifest.yaml'
