@@ -13,7 +13,7 @@ steps:
 - task: Docker@2
   inputs:
     containerRegistry: 'docker'
-    repository: 'danilvorobjov/devops'
+    repository: 'danilvorobjov/project'
     command: 'buildAndPush'
     Dockerfile: '**/Dockerfile'
     tags: 'latest'
