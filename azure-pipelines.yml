@@ -1,14 +1,3 @@
-# Starter pipeline
-- task: Docker@2
-  inputs:
-    containerRegistry: 'docker.io'  # Replace with your Docker Hub registry URL
-    command: 'buildAndPush'
-    Dockerfile: '**/Dockerfile'
-- task: Docker@2
-  inputs:
-    containerRegistry: 'docker'
-    command: 'buildAndPush'
-    Dockerfile: '**/Dockerfile'
 trigger:
 - main
 
@@ -18,11 +7,16 @@ pool:
 steps:
 - task: Docker@2
   inputs:
-    containerRegistry: 'docker.io'  # Replace with your Docker Hub registry URL
+    containerRegistry: 'Docker Hub'
     repository: 'danilenzo/devops'
     command: 'buildAndPush'
     Dockerfile: '**/Dockerfile'
     tags: 'latest'
+- task: Docker@2
+  inputs:
+    containerRegistry: 'docker'
+    command: 'buildAndPush'
+    Dockerfile: '**/Dockerfile'
 - task: KubernetesManifest@1
   inputs:
     action: 'deploy'
