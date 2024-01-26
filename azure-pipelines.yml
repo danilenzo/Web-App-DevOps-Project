@@ -25,5 +25,5 @@ jobs:
       containerRegistry: 'docker'
       repository: 'danilvorobjov/project'
       command: 'buildAndPush'
-      Dockerfile: './dockerfiles/Dockerfile'
+      Dockerfile: './dockerfile'
       tags: 'latest'
