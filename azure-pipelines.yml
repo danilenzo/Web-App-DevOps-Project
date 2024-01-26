@@ -1,13 +1,14 @@
 # Starter pipeline
 - task: Docker@2
   inputs:
+    containerRegistry: 'docker.io'  # Replace with your Docker Hub registry URL
+    command: 'buildAndPush'
+    Dockerfile: '**/Dockerfile'
+- task: Docker@2
+  inputs:
     containerRegistry: 'docker'
     command: 'buildAndPush'
     Dockerfile: '**/Dockerfile'
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
-
 trigger:
 - main
 
@@ -17,7 +18,7 @@ pool:
 steps:
 - task: Docker@2
   inputs:
-    containerRegistry: 'Docker Hub'
+    containerRegistry: 'docker.io'  # Replace with your Docker Hub registry URL
     repository: 'danilenzo/devops'
     command: 'buildAndPush'
     Dockerfile: '**/Dockerfile'
