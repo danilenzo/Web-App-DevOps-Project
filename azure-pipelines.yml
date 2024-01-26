@@ -27,11 +27,3 @@ jobs:
       command: 'buildAndPush'
       Dockerfile: './dockerfile'
       tags: 'latest'
-
-  - task: KubernetesManifest@1
-    inputs:
-     action: 'deploy'
-     azureSubscriptionEndpoint: 'Azure'
-     azureResourceGroup: 'networking-rg'
-     kubernetesCluster: 'terraform-aks-cluster'
-     manifests: './application-manifest.yaml'
