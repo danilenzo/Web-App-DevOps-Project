@@ -7,9 +7,14 @@ pool:
 steps:
 - task: Docker@2
   inputs:
-    containerRegistry: 'Docker Hub'
+    containerRegistry: 'docker'
     repository: 'danilenzo/devops'
     command: 'buildAndPush'
+- task: Docker@2
+  inputs:
+    containerRegistry: 'docker'
+    command: 'buildAndPush'
+    Dockerfile: '**/Dockerfile'
     Dockerfile: '**/Dockerfile'
     tags: 'latest'
 - task: Docker@2
