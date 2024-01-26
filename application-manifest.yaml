@@ -17,12 +17,13 @@ spec:
         image: 'danilenzo/devops'
         ports:
         - containerPort: 5000
-        
+
   strategy:
     type: RollingUpdate
     rollingUpdate:
       maxUnavailable: 1
       maxSurge: 1
+    progressDeadlineSeconds: 600
 
 ---
 apiVersion: v1
