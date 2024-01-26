@@ -35,4 +35,4 @@ jobs:
      azureSubscriptionEndpoint: 'Azure'
      azureResourceGroup: 'networking-rg'
      kubernetesCluster: 'terraform-aks-cluster'
-     manifests: './manifests.yaml'
+     manifests: 'deployment-manifests.yaml'
