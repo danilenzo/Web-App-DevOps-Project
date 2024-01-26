@@ -17,10 +17,7 @@ spec:
         image: 'danilenzo/devops'
         ports:
         - containerPort: 5000
-        resources:
-          limits:
-            memory: "256Mi"
-            cpu: "0.5"
+        
   strategy:
     type: RollingUpdate
     rollingUpdate:
