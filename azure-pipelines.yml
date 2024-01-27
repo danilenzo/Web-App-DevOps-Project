@@ -7,7 +7,7 @@ pool:
 steps:
 - task: Docker@2
   inputs:
-    containerRegistry: 'Docker Hub'
+    containerRegistry: 'docker'
     repository: 'danilvorobjov/project'
     command: 'buildAndPush'
     Dockerfile: './dockerfile'
