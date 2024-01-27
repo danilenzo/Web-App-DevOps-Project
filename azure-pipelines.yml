@@ -10,7 +10,7 @@ steps:
     containerRegistry: 'Docker Hub'
     repository: 'danilvorobjov/project'
     command: 'buildAndPush'
-    Dockerfile: '**/Dockerfile'
+    Dockerfile: './dockerfile'
     tags: 'latest'
 - task: KubernetesManifest@1
   inputs:
