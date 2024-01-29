@@ -6,7 +6,7 @@
 </head>
 <body>
     <div class="header">
-        <h1>Fictional Company Name</h1>
+        <h1>Danil's Company</h1>
     </div>
     <div class="tab-buttons">
         <button id="btn-orders" class="tab-label">Order List</button>
@@ -17,11 +17,7 @@
         <div class="content" id="order-list-content">
             <h2 class="tab-title">Order List</h2>
             <table class="order-table">
-<<<<<<< HEAD
                 <thead>
-=======
-                <table>
->>>>>>> 04c2ce6 (Latest version of the project)
                     <tr>
                         <th>Date UUID</th>
                         <th>User ID</th>
@@ -31,16 +27,11 @@
                         <th>Product Quantity</th>
                         <th>Order Date</th>
                         <th>Shipping Date</th>
-<<<<<<< HEAD
                         <th>Delivery Date</th>
-=======
-                        <th>Delivery Date</th>  <!-- Add this line -->
->>>>>>> 04c2ce6 (Latest version of the project)
                     </tr>
                 </thead>
                 <tbody>
                     {% for order in orders %}
-<<<<<<< HEAD
                         <tr>
                             <td>{{ order.date_uuid }}</td>
                             <td>{{ order.user_id }}</td>
@@ -52,19 +43,6 @@
                             <td>{{ order.shipping_date }}</td>
                             <td>{{ order.delivery_date }}</td>
                         </tr>
-=======
-                    <tr>
-                        <td>{{ order.date_uuid }}</td>
-                        <td>{{ order.user_id }}</td>
-                        <td>{{ order.card_number }}</td>
-                        <td>{{ order.store_code }}</td>
-                        <td>{{ order.product_code }}</td>
-                        <td>{{ order.product_quantity }}</td>
-                        <td>{{ order.order_date }}</td>
-                        <td>{{ order.shipping_date }}</td>
-                        <td>{{ order.delivery_date }}</td>  <!-- Add this line -->
-                    </tr>
->>>>>>> 04c2ce6 (Latest version of the project)
                     {% endfor %}
                 </tbody>
             </table>
@@ -97,15 +75,9 @@
                 <input type="text" id="order_date" name="order_date" required><br>
                 <label for="shipping_date">Shipping Date:</label>
                 <input type="text" id="shipping_date" name="shipping_date" required><br>
-<<<<<<< HEAD
                 <input type="submit" value="Add Order">
                 <label for="delivery_date">Delivery Date:</label>
                 <input type="date" id="delivery_date" name="delivery_date"><br><br>
-=======
-                <label for="delivery_date">Delivery Date:</label> <!-- Add this line -->
-                <input type="date" id="delivery_date" name="delivery_date"><br><br>  <!-- Add this line -->
-                <input type="submit" value="Add Order">
->>>>>>> 04c2ce6 (Latest version of the project)
             </form>
         </div>
     </div>
