@@ -16,6 +16,7 @@ steps:
 - task: KubernetesManifest@1
   inputs:
     action: 'deploy'
+    namespace: 'default'
     connectionType: 'azureResourceManager'
     azureSubscriptionConnection: 'aks-service-connection'
     azureResourceGroup: 'networking-rg'
