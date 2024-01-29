@@ -13,6 +13,7 @@ steps:
     command: 'buildAndPush'
     Dockerfile: './Dockerfile'
     tags: 'latest'
+
 - task: KubernetesManifest@1
   inputs:
     action: 'deploy'
