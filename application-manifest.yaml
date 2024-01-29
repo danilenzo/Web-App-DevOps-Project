@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: flask-app-container
-        image: danilvorobjov/devops:latest
+        image: danilvorobjov/project:latest
         imagePullPolicy: Always
         ports:
         - containerPort: 5000
