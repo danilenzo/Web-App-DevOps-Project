@@ -17,8 +17,6 @@ spec:
       - name: flask-app-container
         image: danilvorobjov/devops:latest
         imagePullPolicy: Always
-        imagePullSecrets:
-      - name: DockerProject
         ports:
         - containerPort: 5000
   strategy:
