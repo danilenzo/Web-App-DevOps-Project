@@ -198,6 +198,15 @@ Upon deploying the application on the AKS cluster, it is essential to conduct th
 
 To interact with the application, users initiate **port forwarding** to a local machine, enabling access to the web application at `http://127.0.0.1:5000`. During the testing phase, specific attention is given to the **orders table** and the **add order** functionality of the application. This ensures the proper display of information and validates the ability to add an order successfully. By meticulously validating these steps, the goal is to ensure that the application performs as expected in the AKS environment.
 
+## Distribution and Accessibility
+
+To distribute the application within the organization, allowing accessibility without relying on port forwarding, users can employ either a **Load Balancer** for external service exposure or an **Ingress resource**. This approach ensures secure access for internal users while also addressing external accessibility. For external access, additional security measures such as authentication and authorization may be implemented, leveraging tools like **OAuth** (authorization to another application) or **Azure AD** (Azure Active Directory). It is imperative to consider network policies and ensure secure communication through protocols like HTTPS to safeguard the application and its data against potential external threats. Comprehensive documentation and communication channels will be established to guide users on secure application access.
+
+## CI/CD Pipelines with Azure DevOps
+
+CI/CD Pipelines with Azure DevOps involves setting up **Continuous Integration (CI)** and **Continuous Delivery/Deployment (CD)** workflows using Azure DevOps services. This software development process aims to enhance development efficiency by automating the building, testing, and deployment of applications.
+
+In the **Continuous Integration (CI)** phase, developers integrate code changes into a shared repository. Each integration undergoes automated builds, including tests, to detect integration errors at the earliest possible stage.
 
 ## Contributors 
 
