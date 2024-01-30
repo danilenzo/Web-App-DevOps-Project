@@ -10,6 +10,11 @@ Welcome to the Web App DevOps Project repo! This application allows you to effic
 - [Contributors](#contributors)
 - [License](#license)
 
+
+## Architecture of The Project
+
+![image](https://i.imgur.com/hupYr7m.png)
+
 ## Features
 
 - **Order List:** View a comprehensive list of orders including details like date UUID, user ID, card number, store code, product code, product quantity, order date, and shipping date.
@@ -163,6 +168,36 @@ The parameters utilized in the creation of the AKS cluster are outlined below:
 Output variables from the networking module include 'resource_group_name', 'vnet_id', 'control_plane_subnet_id', 'worker_node_subnet_id', and 'aks_nsg_id'.
 
 After configuring the settings, initialize the directory using `terraform init`. The setup will be on the main branch within the `aks-terraform` directory. Once initialized, execute `terraform apply` to deploy the cluster in Azure AKS
+
+![image](https://i.imgur.com/O4F9LKH.png)
+
+## Introduction to Service Principals in Azure
+
+A service principal serves as an identity for utilizing services, applications, and automated tools to interact with Azure resources. Roles assigned to the service principal determine the level of restricted access, enabling precise control over the resources that can be accessed and the extent of that access.
+
+`az ad sp create-for-rbac --name {name} --role contributor --scopes /subscriptions/{your-subscription-id}
+`
+
+## Introduction to Kubernetes Orchestration
+
+Kubernetes orchestrates the automation of scaling, software deployment, and management for containerized applications.
+
+## Deployment and Service Manifests
+
+To facilitate the Kubernetes deployment process, a manifest file named `application-manifest.yaml` has been created for this project. The `flask-app-deployment` is the designated name for the resource deployment responsible for managing the containerized web application. The manifest file specifies the deployment of 2 replica pods, utilizing the rolling strategy, and includes labels for effective pod management.
+
+Additionally, a Service manifest named `flask-app-service` has been employed for internal communication. The service is configured to use the TCP protocol on `port 80`, with a target port of `5000`, mirroring the exposed port in the container. The service type has been set to `ClusterIP` to facilitate internal usage within the AKS cluster.
+
+## Deployment Strategy
+
+The chosen deployment strategy for this project is the `Rolling Update` method. This approach ensures a seamless transition by gradually replacing old pods with new ones when they become ready, minimizing downtime. This strategy supports high availability by allowing one pod to deploy while temporarily making the other unavailable. The Rolling Updates strategy is well-suited for applications with an internal nature, enabling updates without disrupting ongoing operations. It ensures a smooth transition from old to new pods, facilitating efficient maintenance and continuous improvement.
+
+## Testing and Validation
+
+Upon deploying the application on the AKS cluster, it is essential to conduct thorough testing and validation to ensure reliability and functionality. This process involves checking the status of services and pods to confirm correct exposure within the cluster.
+
+To interact with the application, users initiate **port forwarding** to a local machine, enabling access to the web application at `http://127.0.0.1:5000`. During the testing phase, specific attention is given to the **orders table** and the **add order** functionality of the application. This ensures the proper display of information and validates the ability to add an order successfully. By meticulously validating these steps, the goal is to ensure that the application performs as expected in the AKS environment.
+
 
 ## Contributors 
 
