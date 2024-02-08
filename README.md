@@ -208,6 +208,88 @@ CI/CD Pipelines with Azure DevOps involves setting up **Continuous Integration (
 
 In the **Continuous Integration (CI)** phase, developers integrate code changes into a shared repository. Each integration undergoes automated builds, including tests, to detect integration errors at the earliest possible stage.
 
+## Continuous Integration (CI) and Continuous Delivery (CD)
+
+In **Continuous Integration (CI)**, developers integrate code changes into a shared repository. Each integration undergoes automated builds, including tests, to identify integration errors as early as possible.
+
+**Continuous Delivery (CD)** automates the process of building, testing, and preparing code changes for production release.
+
+### **Source Repository Configuration**
+
+Our application's source code is hosted on GitHub. To get started, select the repository you wish to work with.
+
+### **Starter Pipeline Template**
+
+Once you've chosen the GitHub repository, initiate a pipeline using a Starter Pipeline template. This template provides a foundational structure to add tasks, including Docker image and Kubernetes file configurations.
+
+### **Pipeline Trigger**
+
+- By default, the pipeline is set to execute automatically on each push to the main branch of the application repository.
+- For testing purposes, you can specify the branch you are testing.
+- This setup facilitates Continuous Integration (CI), enabling thorough testing of changes before integration.
+
+## Docker Hub 
+
+**Setting up Service Connection**
+
+1. Generate a personal access token on Docker Hub.
+2. Configure an Azure DevOps service connection using the Docker Hub personal access token.
+  - Specify the connection type as Docker Hub.
+  - Use your Docker ID as the username.
+  - Input the personal access token as the password.
+  - Verify the details and save the configuration.
+
+![image](https://i.imgur.com/emLTp4o.png)
+
+**Pipeline Docker Image Build and Push:**
+
+1. Search for 'Docker' in the task search bar and select it.
+2. Choose a Docker registry service connection for the container registry.
+3. Specify the repository name for the Docker image on Docker Hub.
+4. Add the Docker task to the pipeline with the 'buildandPush' command.
+5. Set the path to the Dockerfile in the repository (default is the main branch).
+6. Optionally, add a relevant tag to the image (e.g., 'latest').
+
+![image](https://i.imgur.com/SSCOLwz.png)
+
+### **AKS Integration**
+
+1. Establish a service connection within Azure DevOps to securely link the CI/CD pipeline with the AKS cluster.
+2. **Environment** The environment refers to the Azure cloud environment where your AKS cluster resides. It could be Azure Public Cloud (default), Azure Government, Azure China, or Azure Stack.
+3. **Server URL** The Server URL is the endpoint used to communicate with the Azure Resource Manager API. It typically takes the form of https://management.azure.com/.
+4. **Scope Level** Scope level denotes the level of access control applied to Azure resources within your AKS cluster. This could range from subscription-level access to resource group-level access, or even more granular control at the individual resource level. When integrating AKS with ARM, you define the appropriate scope level to ensure that your AKS cluster has the necessary permissions to interact with Azure resources.
+5. **Subscription ID** The Subscription ID uniquely identifies your Azure subscription. It's a GUID (Globally Unique Identifier) assigned to your subscription when you create it.
+6. **Subscription Name** The Subscription Name is the friendly name associated with your Azure subscription. It's a human-readable label to help identify your subscription among others you may have access to.
+7. **Service Principal ID** The Service Principal ID, also known as the Client ID, is a unique identifier assigned to the service principal, which represents an identity used by applications, services, and automation tools to access Azure resources.
+8. **Service Principal Key or Credential** The Service Principal Key, also known as the Client Secret, is a secret key associated with the service principal. It's used as part of the authentication process when the service principal accesses Azure resources.
+9. **Tenant ID** The Tenant ID uniquely identifies your Azure Active Directory tenant. It's a GUID assigned to your AAD tenant when it's created.
+10. **Service Connection Name** The Service Connection Name is the name given to the connection established between your AKS cluster and Azure DevOps or another tool for CI/CD pipelines. It's a label to identify the connection within your CI/CD pipeline configuration.
+
+![image](https://i.imgur.com/KBIXWUw.jpeg)
+
+### **Deploy to Kubernetes Task**
+
+1. Search for 'Kubernetes' in the task search bar and select it.
+2. Modify your pipeline to include the Deploy to Kubernetes task using the 'deploy' command.
+3. Set the following parameters:
+   - **connectionType:** 'azureResourceManager' since it's deployed on AKS (Azure Kubernetes Service).
+   - **azureSubscriptionConnection:** Choose the subscription you want to use.
+   - **azureResourceGroup:** Specify the resource group where you want the application deployed (must match the resource group in main.tf).
+   - **kubernetesCluster:** Provide the name of the cluster (must match the cluster name in main.tf).
+   - **manifests:** Name of the file containing the Kubernetes manifests to deploy (the file must be in your remote repository).
+
+![image](https://i.imgur.com/e6f8nvA.png)
+
+### **Validation Steps**
+
+1. **CI/CD Pipeline Execution:**
+
+- Successfully run the CI/CD pipeline to build and push the Docker image from Docker Hub. The image was then deployed to the AKS cluster.
+- Use ``kubectl get pods`` to verify that the application pods were successfully deployed and are running within the cluster.
+- This is where Continuous Delivery (CD) comes into play as you are automating the deployment process, ensuring efficient and consistent application delivery.
+
+
+
 ## Contributors 
 
 - [Maya Iuga]([https://github.com/yourusername](https://github.com/maya-a-iuga))
