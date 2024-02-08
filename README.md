@@ -274,8 +274,8 @@ Once you've chosen the GitHub repository, initiate a pipeline using a Starter Pi
 3. Set the following parameters:
    - **connectionType:** 'azureResourceManager' since it's deployed on AKS (Azure Kubernetes Service).
    - **azureSubscriptionConnection:** Choose the subscription you want to use.
-   - **azureResourceGroup:** Specify the resource group where you want the application deployed (must match the resource group in main.tf).
-   - **kubernetesCluster:** Provide the name of the cluster (must match the cluster name in main.tf).
+   - **azureResourceGroup:** Specify the resource group where you want the application deployed (must match the resource group in ``main.tf``).
+   - **kubernetesCluster:** Provide the name of the cluster (must match the cluster name in ``main.tf``).
    - **manifests:** Name of the file containing the Kubernetes manifests to deploy (the file must be in your remote repository).
 
 ![image](https://i.imgur.com/e6f8nvA.png)
