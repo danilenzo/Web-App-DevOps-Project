@@ -288,6 +288,11 @@ Once you've chosen the GitHub repository, initiate a pipeline using a Starter Pi
 - Use ``kubectl get pods`` to verify that the application pods were successfully deployed and are running within the cluster.
 - This is where Continuous Delivery (CD) comes into play as you are automating the deployment process, ensuring efficient and consistent application delivery.
 
+2. **Testing the Deployed Cluster**
+
+- Monitor the status of the pods within the AKS cluster to ensure they are healthy.
+- Access the application by initiating port forwarding using `kubectl`.
+- Test the application's functionality locally to ensure it operates correctly within the AKS cluster.
 
 
 ## Contributors 
