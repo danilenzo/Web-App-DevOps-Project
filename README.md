@@ -76,26 +76,26 @@ The Dockerfile for this project encapsulates all dependencies and configurations
 
 Step 1: Containerizing the Web Application
 
-    - The base image, defined with the "FROM" command, is set to python:3.8-slim.
-    - The working directory is set to '/app' using WORKDIR.
-    - Application files are copied with COPY . /app, leveraging the current directory ('.') as the source and '/app' as the destination.
-    - Python packages are installed from requirements.txt to satisfy dependencies outlined under the 'Prerequisites' section.
-    - The Flask application's accessibility is established outside the container by exposing port 5000 with the "EXPOSE" command.
-    - A start-up command is defined with "CMD" to initiate the Flask application, using CMD ["python","app.py"].
+- The base image, defined with the "FROM" command, is set to python:3.8-slim.
+- The working directory is set to '/app' using WORKDIR.
+- Application files are copied with COPY . /app, leveraging the current directory ('.') as the source and '/app' as the destination.
+- Python packages are installed from requirements.txt to satisfy dependencies outlined under the 'Prerequisites' section.
+- The Flask application's accessibility is established outside the container by exposing port 5000 with the "EXPOSE" command.
+- A start-up command is defined with "CMD" to initiate the Flask application, using CMD ["python","app.py"].
 
 Step 2: Building the Docker Image
 
-    - The Docker image is built with the command docker build -t {name of the image} . in the current directory.
+- The Docker image is built with the command docker build -t {name of the image} . in the current directory.
 
 Step 3: Running the Container on Local Machine
 
-    - To test the image, docker run -p 5000:5000 {name of the image} is used, mapping port 5000 from the local machine to the container for application access.
-    - Testing can be done by navigating to http://127.0.0.1:5000 in a web browser.
+- To test the image, docker run -p 5000:5000 {name of the image} is used, mapping port 5000 from the local machine to the container for application access.
+- Testing can be done by navigating to http://127.0.0.1:5000 in a web browser.
 
 Step 4: Pushing the Image to Docker Hub
 
-    - Tag the Docker image using docker tag {image-name} {docker-hub-username}/{image-name}:{tag}.
-    - Finally, push the image to Docker Hub with docker push {docker-hub-username}/{image-name}:{tag}.
+- Tag the Docker image using docker tag {image-name} {docker-hub-username}/{image-name}:{tag}.
+- Finally, push the image to Docker Hub with docker push {docker-hub-username}/{image-name}:{tag}.
 
 Refer to Dockerfile and requirements.txt in the main branch for the associated files.
 
@@ -108,23 +108,23 @@ Terraform serves as the foundational tool for provisioning an Azure Kubernetes S
 Establishing the network for the AKS cluster is a crucial step to ensure optimal functionality of networking services in Azure. Utilizing variables, main, and outputs Terraform files is recommended for structuring the infrastructure.
 
 1. Variables
-     - Resource group: A container managing Azure resources for deployment.
-     - Location: The geographical location where the AKS cluster service will be situated.
-     - Vnet address space: A defined range of virtual addresses enabling communication within the resource group.
+- Resource group: A container managing Azure resources for deployment.
+- Location: The geographical location where the AKS cluster service will be situated.
+- Vnet address space: A defined range of virtual addresses enabling communication within the resource group.
 
 2. Main
-     - Azure resource group: A container overseeing the relevant Azure resources for management and deployment.
-     - Virtual Network (VNet): Facilitates communication between resources.
-     - Control Plane Subnet: Manages resources such as nodes and pods in the cluster.
-     - Worker Node Subnet: A virtual machine handling a portion of an application's workload.
-     - Network Security Group (NSG): Security rules governing inbound and outbound traffic for various Azure resources.
+- Azure resource group: A container overseeing the relevant Azure resources for management and deployment.
+- Virtual Network (VNet): Facilitates communication between resources.
+- Control Plane Subnet: Manages resources such as nodes and pods in the cluster.
+- Worker Node Subnet: A virtual machine handling a portion of an application's workload.
+- Network Security Group (NSG): Security rules governing inbound and outbound traffic for various Azure resources.
 
 3. Outputs
-    - vnet_id: Identification of the virtual network.
-     - control_plane_subnet_id: Identification of the subnet for the control plane.
-     - worker_node_subnet_id: Identification of the subnet for a worker node.
-     - networking_resource_group_name: Resource group name for the networking aspects of the AKS cluster.
-     - aks_nsg_id: Identification for the network security group.
+- vnet_id: Identification of the virtual network.
+- control_plane_subnet_id: Identification of the subnet for the control plane.
+- worker_node_subnet_id: Identification of the subnet for a worker node.
+- networking_resource_group_name: Resource group name for the networking aspects of the AKS cluster.
+- aks_nsg_id: Identification for the network security group.
 
 After configuring the settings, initialize the directory using `terraform init`. The setup will be on the main branch in the `networking` directory.
 
@@ -134,37 +134,37 @@ Establishing the cluster for the AKS cluster is crucial to ensure optimal functi
 
 
 1. Variables
-     - aks_cluster_name: The designated name for the provisioned cluster.
-     - cluster_location: The location where the cluster is provisioned.
-     - dns_prefix: The DNS prefix defining the cluster.
-     - kubernetes_version: The version of the Kubernetes cluster.
-     - service_principal_client_id: Client ID for the service principal associated with the cluster.
-     - service_principal_secret: Password providing access to the cluster.
+- aks_cluster_name: The designated name for the provisioned cluster.
+- cluster_location: The location where the cluster is provisioned.
+- dns_prefix: The DNS prefix defining the cluster.
+- kubernetes_version: The version of the Kubernetes cluster.
+- service_principal_client_id: Client ID for the service principal associated with the cluster.
+- service_principal_secret: Password providing access to the cluster.
 The output variables from the networking module include `'resource_group_name'`, `'vnet_id'`, `'control_plane_subnet_id'`, and `'worker_node_subnet_id'`.
 2. Main
-     - azurerm_kubernetes_cluster: Configuration of variables associated with the cluster's name, location, resource group name, DNS prefix, and Kubernetes version.
-     - default_node_pool: Configuration for the cluster in Azure.
-     - service_principal: Identity used for applications, hosted services, and automated tools to access resources.
+- azurerm_kubernetes_cluster: Configuration of variables associated with the cluster's name, location, resource group name, DNS prefix, and Kubernetes version.
+- default_node_pool: Configuration for the cluster in Azure.
+- service_principal: Identity used for applications, hosted services, and automated tools to access resources.
 3. Outputs
-     - aks_cluster_name: The name of the provisioned cluster.
-     - aks_cluster_id: ID of the AKS cluster.
-     - aks_kubeconfig: The Kubernetes configuration file for the cluster, enabling interaction and management using kubectl.
+- aks_cluster_name: The name of the provisioned cluster.
+- aks_cluster_id: ID of the AKS cluster.
+- aks_kubeconfig: The Kubernetes configuration file for the cluster, enabling interaction and management using kubectl.
 After configuring the settings, initialize the directory using `terraform init`. The setup will be on the main branch within the `aks-cluster` directory.
 
 ### **Setting Up the AKS Cluster**
 The parameters utilized in the creation of the AKS cluster are outlined below:
 
 1. Networking
-     - resource_group_name: "networking-rg"
-     - location: "UK South"
-     - vnet_address_space: ["10.0.0.0/16"]
+- resource_group_name: "networking-rg"
+- location: "UK South"
+- vnet_address_space: ["10.0.0.0/16"]
 2. AKS Cluster
-     - cluster_name: "terraform-aks-cluster"
-     - location: "UK South"
-     - dns_prefix: "myaks-project"
-     - kubernetes_version: "1.26.6"
-     - service_principal_client_id: Azure client ID
-     - service_principal_secret: Azure client secret
+- cluster_name: "terraform-aks-cluster"
+- location: "UK South"
+- dns_prefix: "myaks-project"
+- kubernetes_version: "1.26.6"
+- service_principal_client_id: Azure client ID
+- service_principal_secret: Azure client secret
 Output variables from the networking module include 'resource_group_name', 'vnet_id', 'control_plane_subnet_id', 'worker_node_subnet_id', and 'aks_nsg_id'.
 
 After configuring the settings, initialize the directory using `terraform init`. The setup will be on the main branch within the `aks-terraform` directory. Once initialized, execute `terraform apply` to deploy the cluster in Azure AKS
