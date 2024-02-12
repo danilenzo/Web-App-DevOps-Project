@@ -358,6 +358,7 @@ Effective monitoring and alerting for your AKS cluster are crucial components of
 ## Contributors 
 
 - [Maya Iuga]([https://github.com/yourusername](https://github.com/maya-a-iuga))
+- [Danil Vorobjov]((https://github.com/danilenzo))
 
 ## License
 
