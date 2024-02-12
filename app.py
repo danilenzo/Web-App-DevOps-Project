@@ -16,7 +16,7 @@ secret_client = SecretClient(vault_url=key_vault_url, credential=credential)
 # Initialise Flask App
 app = Flask(__name__)
 
-# database connection 
+# Database connection 
 server = secret_client.get_secret("server-name").value
 database = secret_client.get_secret("database-name").value
 username = secret_client.get_secret("server-username").value
