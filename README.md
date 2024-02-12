@@ -294,6 +294,66 @@ Once you've chosen the GitHub repository, initiate a pipeline using a Starter Pi
 - Access the application by initiating port forwarding using `kubectl`.
 - Test the application's functionality locally to ensure it operates correctly within the AKS cluster.
 
+## AKS Cluster Monitoring and Alerting 
+
+Effective monitoring and alerting for your AKS cluster are crucial components of your DevOps pipeline. They ensure the efficient operation of the cluster and help detect and address potential issues promptly. And I will be providing chart insights into the behavior of your AKS cluster.
+
+1. **Average Node CPU Usage**
+
+- Monitors the CPU usage across all nodes in the cluster.
+- The chart shows normal operation with occasional spikes of low usage, indicating healthy performance.
+
+![image](https://i.imgur.com/3Bv83si.png)
+
+2. **Average Pod Count**
+
+- Displays the average number of pods in use within the cluster.
+- A constant line at 16 pods suggests no scaling occurred during the observed duration.
+
+![image](https://i.imgur.com/BP1SPFo.png)
+
+3. **Bytes Read and Written per Second**
+
+- Measures the amount of data read from and written to storage devices.
+- 'Bytes Read per Second' shows consistent activity with minor spikes, while 'Bytes Written per Second' fluctuates within a certain range.
+
+![image](https://i.imgur.com/9QYAgi0.png)
+
+### **Log Analytics**
+
+1. **Average Node CPU Usage Percentage per Minute**
+
+- Captures CPU usage data to assess cluster performance.
+- Displays a consistent pattern with one anomaly.
+
+![image](https://i.imgur.com/BHvxhFw.png)
+
+2. **Average Node Memory Usage Percentage per Minute**
+
+- Monitors memory usage of nodes to optimize resource efficiency.
+- Shows minimal variation in data over time.
+
+![image](https://i.imgur.com/BHvxhFw.png)
+
+3. **Pods Counts with Phase**
+
+- Provides insights into pod lifecycle phases (Pending, Running, or Terminating).
+- Illustrates a well-distributed and consistent workload across the cluster.
+
+![image](https://i.imgur.com/3AhOt0e.png)
+
+4. **Find Warning Value in Container Logs**
+
+- Identifies warning signals within container logs to detect issues.
+- The provided code snippet demonstrates how to locate potential problems.
+
+![image](https://i.imgur.com/O6JGaBp.png)
+
+5. **Monitoring Kubernetes Events**
+
+- Monitoring Kubernetes events is essential for maintaining the health and stability of your AKS cluster. It involves tracking various events related to the cluster's operation
+
+![image](https://i.imgur.com/TbRCiQy.png)
 
 ## Contributors 
 
