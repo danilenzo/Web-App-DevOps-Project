@@ -355,6 +355,120 @@ Effective monitoring and alerting for your AKS cluster are crucial components of
 
 ![image](https://i.imgur.com/TbRCiQy.png)
 
+## Azure Key Vault: Secure Secret Management
+
+Azure Key Vault offers a robust solution for securely storing and managing sensitive information. It provides a scalable and centralized platform for safeguarding confidential data.
+
+### **Creating an Azure Key Vault**
+
+To create a Key Vault in Azure:
+
+1. Navigate to the Key Vaults service.
+2. Click on the '+ Create' button.
+3. Choose your subscription and select a resource group or create a new one.
+4. Provide a unique name for your Key Vault.
+5. Select the region for your Key Vault.
+6. Review your settings and click 'Create' to initiate the deployment of your Azure Key Vault.
+
+![image](https://i.imgur.com/CxAXWwl.png)
+
+### **Key Features**
+
+- Secure Storage: Safely store sensitive information such as passwords, API keys, and certificates.
+- Centralized Management: Manage all your secrets in one centralized location.
+- Scalability: Scale your secret management needs as your application grows.
+- Integration: Seamlessly integrate with Azure services and applications.
+
+### **Assigning RBAC Roles in Key Vault**
+
+In order to assign Role-Based Access Control (RBAC) roles to users in Key Vault by following these steps:
+
+1. Navigate to your Key Vault.
+2. Select the 'Access control (IAM)' tab from the menu.
+3. Click on the '+ Add' button and choose 'Add a role assignment'.
+4. From the list, select 'Key Vault Administrator'.
+5. Under 'Members', click on 'Select members' and choose the users you want to add.
+6. Once you've added the desired users to the Key Vault, review your selections.
+7. Finally, click 'Review + assign' to complete the assignment of roles.
+
+![image](https://i.imgur.com/PivWVrH.jpg)
+
+### **Adding Secrets in Key Vault
+
+To add secrets to your Key Vault, follow these steps:
+
+1. Locate your Key Vault and select the 'Secrets' tab.
+2. Click on '+ Generate/Import'. This will take you to a page to configure your secret.
+3. Create secrets for your environment variables. You can create up to four secrets.
+4. Assign a name to each secret.
+5. Enter the secret value, which could be a password or any sensitive information.
+6. Once you've provided the appropriate name and secret value, create the secret.
+7. Ensure that both the secrets and database credentials in your app.py file have the same name to facilitate integration between them.
+
+The secrets in Azure key Vault:
+
+![image](https://i.imgur.com/swQMleL.png)
+
+The database connection in `app.py`:
+
+![image](https://i.imgur.com/LthtSSy.png)
+
+### **User-Assigned Managed Identity**
+
+User-Assigned Managed Identity offers secure access to various Azure services. These identities can then be utilized to authenticate and authorize access to other Azure resources.
+
+To create a user-assigned managed identity, execute the following command:
+
+```
+az identity create -g {Resource-Group-name} -n {name-the-User-Identity}
+```
+
+### **Integrating Azure Key Vault with AKS**
+
+Integrating Azure Key Vault with AKS ensures applications run without exposing credentials. This setup involves applying Managed Identity for AKS and assigning necessary Key Vault permissions to the managed identity.
+
+To create a managed identity for the AKS cluster to support interactions with Azure Key Vault without exposing credentials in the application, use the following commands:
+
+
+```
+ az aks update --resource-group <resource-group> --name <aks-cluster-name> --enable-managed-identity
+```
+
+This returns information about the identity profile of the specified AKS cluster:
+
+```
+az aks show --resource-group <resource-group> --name <aks-cluster-name> --query identityProfile
+```
+
+To grant the specified managed identity (identified by its client ID obtained from the above command) the "Key Vault Secrets Officer" role at the specified scope, which is an Azure Key Vault instance, use:
+
+```
+az role assignment create --role "Key Vault Secrets Officer" \
+--assignee <managed-identity-client-id> \
+--scope subscriptions/{subscription-id}/resourceGroups/{resource-group}/providers/Microsoft.KeyVault/vaults/{key-vault-name}
+```
+
+### **Python Libaries To Add**
+
+For the Key Vault and Azure identity to function in Python, install the following libraries:
+
+- **pip install azure-identity**
+- **pip install azure-keyvault-secrets**
+
+After installing the packages, add the following imports at the top of your Python script to activate the packages:
+
+- **from azure.identity import ManagedIdentityCredential**
+- **from azure.keyvault.secrets import SecretClient**
+
+### **Requirements To Add**
+
+After installing the dependencies, you need to add them to your `requirements.txt` file for it to work. Use the command `conda list` to display packages in the current environment. The required packages are:
+
+- **azure-identity**
+- **azure-keyvault-secrets**
+
+They will both list the version next to them to use.
+
 ## Contributors 
 
 - [Maya Iuga](https://github.com/maya-a-iuga)
